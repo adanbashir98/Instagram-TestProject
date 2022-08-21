@@ -10,20 +10,15 @@
   </head>
 
   <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <%# <% if !user_signed_in? %>
-    <%# <%= render 'layouts/public'%>
-  <%# <% end %>
-  <% if user_signed_in? %>
-    <%= render 'layouts/navbar' %>
-    <%# <% else %>
-    <%# <%= render 'layouts/public' %>
-  <% end %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <% if user_signed_in? %>
+      <%= render 'layouts/navbar' %>
+    <% end %>
 
-  <main class="container" style="min-height: 500px;">
-  <%= yield %>
-  </main>
-  <%= render 'layouts/footer' %>
-</body>
+    <main class="container" style="min-height: 500px;">
+      <%= yield %>
+    </main>
+    <%= render 'layouts/footer' %>
+  </body>
 </html>

@@ -6,15 +6,25 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.2'
 
 gem 'bootstrap', '~> 4.0.0'
-gem 'cloudinary'
-gem 'devise'
-gem 'font-awesome-rails'
-gem 'foreman'
+
 gem 'jquery-rails'
-gem 'letter_opener', group: :development
-gem 'sidekiq'
+
 gem 'whenever', require: false
+
+gem 'foreman'
+
+gem 'sidekiq'
+
+gem 'cloudinary'
+
+gem 'font-awesome-rails'
+
+# pagination gem
 gem 'will_paginate', '~>3.0'
+# letter_opener gem
+gem 'letter_opener', group: :development
+# devise gem
+gem 'devise'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.8', '>= 5.2.8.1'

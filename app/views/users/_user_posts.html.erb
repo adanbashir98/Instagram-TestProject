@@ -6,10 +6,10 @@
   <% @posts.each do |post|%>
     <div class="wrapper">
       <%=link_to post_path(post) do %>
-        <%if post.image.attached?%>
-          <%= cl_image_tag(post.image.key, width: 700, height: 550, class:'border') %>
+          <%if post.images.attached? %>
+            <%= cl_image_tag(post.images.first.key, width: 700, height: 550, class:'border') %>
+          <% end %>
         <% end %>
-      <% end %>
     </div>
   <% end %>
 </div>
