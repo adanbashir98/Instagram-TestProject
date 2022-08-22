@@ -6,25 +6,16 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.2'
 
 gem 'bootstrap', '~> 4.0.0'
-
-gem 'jquery-rails'
-
-gem 'whenever', require: false
-
-gem 'foreman'
-
-gem 'sidekiq'
-
 gem 'cloudinary'
-
-gem 'font-awesome-rails'
-
-# pagination gem
-gem 'will_paginate', '~>3.0'
-# letter_opener gem
-gem 'letter_opener', group: :development
-# devise gem
 gem 'devise'
+gem 'font-awesome-rails'
+gem 'foreman'
+gem 'jquery-rails'
+gem 'letter_opener', group: :development
+gem 'ransack'
+gem 'sidekiq'
+gem 'whenever', require: false
+gem 'will_paginate', '~>3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.8', '>= 5.2.8.1'
@@ -50,8 +41,8 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'mini_magick', '~> 4.8'
 gem 'image_processing', '>= 1.2'
+gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

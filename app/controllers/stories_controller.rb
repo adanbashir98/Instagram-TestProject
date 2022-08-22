@@ -12,7 +12,6 @@ class StoriesController < ApplicationController
   end
 
   def destroy
-    StoryDeletionJob.perform(Story.find(params[:id]))
     @story = current_user.stories.find(params[:id])
     if @story.destroy
       flash[:notice] = 'Story is deleted!'

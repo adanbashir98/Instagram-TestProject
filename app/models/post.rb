@@ -9,12 +9,19 @@ class Post < ApplicationRecord
 
   validate :image_presence
   validate :number_of_photos
+  validate :size_of_image
+
+  def size_of_image
+    images.each do |image|
+      return errors.add(:images, 'Image too big!') if image.blob.byte_size < 10.megabyte
+    end
+  end
 
   def image_presence
     errors.add(:images, "can't be blank") unless images.attached?
   end
 
   def number_of_photos
-    errors.add(:images, 'Maximum 10 pictures can be added') if images.count > 10
+    errors.add(:images, 'Maximum 10 pictures can be added') if images.size > 10
   end
 end

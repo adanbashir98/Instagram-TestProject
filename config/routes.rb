@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search', to: 'search#index'
   resources :home, only: [:index]
   devise_scope :user do
     authenticated :user do
@@ -17,8 +18,8 @@ Rails.application.routes.draw do
   end
   resources :stories, only: [:new, :create, :show, :destroy]
   resources :posts, only: [:new, :create, :show, :destroy, :edit] do
-    post :like, on: :member
-    delete :unlike, on: :member
+    post :like, on: :member, to: "likes#create", as: "like"
+    delete :unlike, on: :member, to: "likes#destroy", as: "unlike"
     resources :comments, only: [:new, :create, :show, :destroy], shallow: true
   end
 
