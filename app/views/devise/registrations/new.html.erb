@@ -31,6 +31,11 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Re-type password" %>
   </div>
 
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.select :status, ['accessible', 'inaccessible'], autofocus: true, required: true%>
+  </div><br>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

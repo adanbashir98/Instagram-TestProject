@@ -7,6 +7,22 @@ ruby '2.7.2'
 
 # Bootstrap gem
 gem 'bootstrap', '~> 4.0.0'
+
+gem 'acts_as_votable'
+
+gem 'jquery-rails'
+
+gem 'whenever', require: false
+
+# gem 'clockwork'
+gem 'foreman'
+
+gem 'sidekiq'
+
+gem 'cloudinary'
+
+gem 'font-awesome-rails'
+
 # pagination gem
 gem 'will_paginate', '~>3.0'
 # letter_opener gem
