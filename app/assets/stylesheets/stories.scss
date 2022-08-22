@@ -1,0 +1,10 @@
+// Place all the styles related to the Stories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.stories {
+  display: flex;
+  justify-content: space-around;
+}
+.story-img {
+  border-radius: 50%;
+}

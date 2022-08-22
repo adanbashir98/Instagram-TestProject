@@ -1,0 +1,16 @@
+<div>
+  <%= form_for [@post, @post.comments.new] do |f| %>
+  <%= f.text_field :comment_body, placeholder: "Add a comment ...", autocomplete: :off, required: true %>
+  <%= f.submit %>
+  <% end %>
+</div>
+<div>
+
+  <% @post.comments.each do |comment| %>
+    <p><%= comment.user&.full_name %> <%= comment.comment_body %></p>
+    <% if comment.persisted?%>
+    <%= link_to 'Delete Comment', {controller: "comments", action: "destroy", id: comment.id}, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%# <%= redirect_to post_path(@post)%>
+    <%end%>
+  <% end %>
+</div>

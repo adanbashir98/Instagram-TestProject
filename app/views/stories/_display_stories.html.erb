@@ -1,0 +1,15 @@
+<div class="stories">
+  <% @stories.each do |story| %>
+    <section>
+
+      <div class="username">
+        <%if story.image.attached?%>
+          <%= cl_image_tag(story.image.key, width: 80, height: 80, class:'story-img') %>
+        <%end%>
+      </div>
+      <div class="username">
+        <%= link_to story.user.full_name, story_path(story), class: 'username' %>
+      </div>
+    </section>
+  <% end %>
+</div>

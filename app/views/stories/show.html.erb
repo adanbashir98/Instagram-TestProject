@@ -1,0 +1,14 @@
+<div>
+  <%= "#{@story.user.full_name}'s Story" %>
+</div>
+<div>
+  <%=image_tag @story.image, class: "story-img"%>
+</div>
+<div class="delete">
+    <% if current_user.stories.exists?(@story.id) %>
+      <%= link_to 'Delete Story', story_path(@story), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+</div>
+
+StoryDeletionJob.perform_later story_id
+

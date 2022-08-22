@@ -5,15 +5,13 @@
 
   <div class="field">
     <%= f.label :full_name %><br />
-    <%= f.text_field :full_name, autofocus: true, placeholder: "Your Full Name" %>
-     <%# , autocomplete: "email" %>
+    <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name", placeholder: "Your Full Name" %>
   </div>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true, placeholder: "Your Username" %>
-     <%# , autocomplete: "email" %>
-  </div>
+  <%# <div class="field"> %>
+    <%# <%= f.label :username %><br />
+    <%# <%= f.text_field :username, autofocus: true, autocomplete: "username", placeholder: "Your Username" %>
+  <%# </div> %>
 
   <div class="field">
     <%= f.label :email %><br />
@@ -25,13 +23,18 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", placeholder: "Write passowrd" %>
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "Write password" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Re-type password" %>
   </div>
+
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.select :status, ['publc', 'prvate'], autofocus: true, required: true%>
+  </div><br>
 
   <div class="actions">
     <%= f.submit "Sign up" %>

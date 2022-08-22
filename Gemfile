@@ -7,6 +7,22 @@ ruby '2.7.2'
 
 # Bootstrap gem
 gem 'bootstrap', '~> 4.0.0'
+
+gem 'acts_as_votable'
+
+gem 'jquery-rails'
+
+gem 'whenever'
+
+gem 'clockwork'
+gem 'foreman'
+
+gem 'sidekiq'
+
+gem 'cloudinary'
+
+gem 'font-awesome-rails'
+
 # pagination gem
 gem 'will_paginate', '~>3.0'
 # letter_opener gem
@@ -39,7 +55,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
+
+gem 'image_processing', '>= 1.2'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -49,7 +67,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
@@ -77,5 +95,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'rubocop-minitest'
   gem 'rubocop-performance'
-  gem 'rubocop-rails' # or gem 'rubocop-rspec' depending on your test suite
+  gem 'rubocop-rails' # or
+  gem 'rubocop-rspec'
+  # depending on your test suite
 end

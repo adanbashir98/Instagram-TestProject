@@ -3,28 +3,38 @@
 # Users Controller
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_user, only: %i[show follow unfollow]
 
   def show
-    @user = User.find(params[:id])
+    @posts = @user.posts.order(created_at: :desc)
   end
 
-  def new
-    @user = User.new
+  # def edit
+  #   @user = User.find(params[:id])
+  # end
+
+  # def update
+  #   current_user.update(user_params)
+  #   redirect_to current_user
+  # end
+
+  def follow
+    current_user.followees.concat(@user)
+    redirect_to user_path(@user)
   end
 
-  def create
-    @user = User.new(user_params)
-
-    if @user.save
-      redirect_to @user
-    else
-      render :new
-    end
+  def unfollow
+    current_user.followed_users.find_by(followee_id: @user.id).delete
+    redirect_to user_path(@user)
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:email, :encrypted_password, :username, :full_name)
+    params.require(:user).permit(:email, :encrypted_password, :username, :full_name, :bio, :avatar)
+  end
+
+  def find_user
+    @user = User.find(params[:id])
   end
 end
