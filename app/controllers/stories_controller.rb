@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# Stories Controller
 class StoriesController < ApplicationController
   before_action :authenticate_user!
   def create

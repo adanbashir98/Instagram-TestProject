@@ -5,30 +5,16 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 
-# Bootstrap gem
 gem 'bootstrap', '~> 4.0.0'
-
-gem 'acts_as_votable'
-
-gem 'jquery-rails'
-
-gem 'whenever', require: false
-
-# gem 'clockwork'
-gem 'foreman'
-
-gem 'sidekiq'
-
 gem 'cloudinary'
-
-gem 'font-awesome-rails'
-
-# pagination gem
-gem 'will_paginate', '~>3.0'
-# letter_opener gem
-gem 'letter_opener', group: :development
-# devise gem
 gem 'devise'
+gem 'font-awesome-rails'
+gem 'foreman'
+gem 'jquery-rails'
+gem 'letter_opener', group: :development
+gem 'sidekiq'
+gem 'whenever', require: false
+gem 'will_paginate', '~>3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.8', '>= 5.2.8.1'
@@ -54,9 +40,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'
-
 gem 'image_processing', '>= 1.2'
 
 # Use Capistrano for deployment
@@ -90,12 +74,10 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-# rubocop configuration
 group :development, :test do
   gem 'rubocop'
   gem 'rubocop-minitest'
   gem 'rubocop-performance'
-  gem 'rubocop-rails' # or
+  gem 'rubocop-rails'
   gem 'rubocop-rspec'
-  # depending on your test suite
 end

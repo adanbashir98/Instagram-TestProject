@@ -11,9 +11,5 @@ set :output, "/home/dev/Documents/Instagram-TestProject/instagram-clone/log/cron
 every 1.minute do
   rake 'sample:test'
 end
-#
-# every 4.days do
-#   runner "AnotherModel.prune_old_records"
-# end
 
 # Learn more: http://github.com/javan/whenever

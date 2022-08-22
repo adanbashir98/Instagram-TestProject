@@ -1,15 +1,10 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  # respond_to :js, :html, :json
   before_action :authenticate_user!
   before_action :find_post, only: %i[show destroy edit update]
 
   def create
-    # @user = User.find(params[:id])
-    # @post = @user.posts.create(post_params)
-    # redirect_to root_path
-  # end
     @post = current_user.posts.create(post_params)
     redirect_to root_path
   end
@@ -18,28 +13,12 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
-  def edit
-    # edit
-  end
+  def edit; end
 
   def update
-    # if
-      @post.update(post_params)
-      # render 'edit'
-      redirect_to post_path(@post)
-    # else
-      # redirect_to root_path
-      # render 'edit'
-    # end
+    @post.update(post_params)
+    redirect_to post_path(@post)
   end
-
-  # def like
-  #   if params[:format] == 'like'
-  #     @post.liked_by current_user
-  #   elsif params[:format] == 'unlike'
-  #     @post.unliked_by current_user
-  #   end
-  # end
 
   def destroy
     @post = current_user.posts.find(params[:id])

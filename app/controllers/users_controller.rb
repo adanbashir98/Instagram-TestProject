@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# Users Controller
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_user, only: %i[show follow unfollow]
