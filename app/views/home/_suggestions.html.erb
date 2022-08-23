@@ -1,4 +1,5 @@
-<h3>People you can FOLLOW: </h3>
-<% @suggestions.each do |user| %>
-  <%= link_to user.full_name, user_path(user) %>
+<h4>People you can follow: </h4>
+<ul><% @suggestions.each do |user| %>
+ <li><%= link_to user.full_name, user_path(user) %></li>
 <%end%>
+</ul>

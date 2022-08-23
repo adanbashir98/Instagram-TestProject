@@ -1,0 +1,18 @@
+<h5 class= 'text-center'><%= pluralize(users.count, 'Result')%></h5>
+  <div class= 'container'>
+    <table class='table'>
+      <thead>
+        <th> <%= sort_link(search, :full_name, 'Name' , default_order: :asc) %></th>
+        <th> <%= sort_link(search, :email, 'Email')%></th>
+      </thead>
+
+      <tbody>
+        <% users.each do |user| %>
+        <tr>
+          <td><%= link_to user.full_name, user%></td>
+          <td><%= link_to user.email, user %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>

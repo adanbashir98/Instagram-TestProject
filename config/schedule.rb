@@ -6,10 +6,9 @@
 # Example:
 #
 set :environment, "development"
-set :output, "/home/dev/Documents/Instagram-TestProject/instagram-clone/log/cron_log.log"
 
 every 1.minute do
-  rake 'sample:test'
+  rake 'user:story_deletion'
 end
 
 # Learn more: http://github.com/javan/whenever

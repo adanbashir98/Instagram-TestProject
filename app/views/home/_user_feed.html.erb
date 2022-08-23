@@ -1,53 +1,53 @@
-<div class="posts">
+<div class='posts'>
   <% @posts.each do |post| %>
     <% if post.user.accessible? || post.user.followers.pluck(:follower_id).include?(current_user.id) %>
-      <section class="post">
-        <div class="user">
-          <div class="avatar">
+      <section class='post'>
+        <div class='user'>
+          <div class='avatar'>
             <% if post.user.avatar.attached? %>
               <%= image_tag post.user.avatar %>
             <% end %>
           </div>
           <%= link_to post.user.full_name, user_path(post.user), class: 'username' %>
         </div>
-        <div class="username">
+        <div class='username'>
           <%if post.images.attached?%>
-              <div class="carousel slide" data-ride="carousel" id="carousel-post-<%= post.id %>">
-                <div class="carousel-inner">
+              <div class='carousel slide' data-ride='carousel' id='carousel-post-<%= post.id %>'>
+                <div class='carousel-inner'>
                 <% post.images.each do |photo| %>
                   <% if photo == post.images.first %>
-                    <div class="carousel-item active">
+                    <div class='carousel-item active'>
                   <%else%>
-                    <div class="carousel-item">
+                    <div class='carousel-item'>
                   <%end%>
-                  <%=image_tag photo, class: 'image' %>
+                  <%=image_tag photo, class: 'image myimg' %>
                 </div>
             <%end%>
             </div>
-            <a class="carousel-control-prev" href="#carousel-post-<%= post.id %>" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
+            <a class='carousel-control-prev' href='#carousel-post-<%= post.id %>' role='button' data-slide='prev'>
+              <span class='carousel-control-prev-icon' aria-hidden='true'></span>
+              <span class='sr-only'>Previous</span>
             </a>
-            <a class="carousel-control-next" href="#carousel-post-<%= post.id %>" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
+            <a class='carousel-control-next' href='#carousel-post-<%= post.id %>' role='button' data-slide='next'>
+              <span class='carousel-control-next-icon' aria-hidden='true'></span>
+              <span class='sr-only'>Next</span>
             </a>
         </div>
       </div>
         <%end%>
-        <div class="description">
+        <div class='description'>
           <%= post.content %>
         </div>
      <div>
       <%= form_for [post, post.comments.new] do |f| %>
-      <%= f.text_field :comment_body, placeholder: "Add a comment ...", autocomplete: :off, required: true %>
+      <%= f.text_field :comment_body, placeholder: 'Add a comment ...', autocomplete: :off, required: true %>
       <%= f.submit %>
       <% end %>
       </div>
     <br>
         <div>
 <% if post.likes.pluck(:user_id).include?(current_user.id) %>
-    <%= button_to 'Unlike Post', {controller: "likes", action: "destroy", id: post.likes.ids.first.to_i}, method: :delete %>
+    <%= button_to 'Unlike Post', {controller: 'likes', action: 'destroy', id: post.likes.ids.first.to_i}, method: :delete %>
 <% else %>
     <%= button_to 'Like Post', like_post_path(post) %>
 <%end %>
@@ -56,7 +56,7 @@
         <% post.comments.each do |comment| %>
         <p><%= comment.user&.full_name %> <%= comment.comment_body %></p>
         <% if comment.persisted?%>
-          <%= link_to 'Delete Comment', {controller: "comments", action: "destroy", id: comment.id}, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Delete Comment', {controller: 'comments', action: 'destroy', id: comment.id}, method: :delete, data: { confirm: 'Are you sure?' } %>
           <%end%>
           <%end%>
         </div>

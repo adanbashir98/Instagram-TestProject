@@ -1,9 +1,9 @@
 <h1>Edit Post</h1>
-<%= form_for Post.edit do |f| %>
-  <div class="form-group">
+<%= form_with model: @post, remote: true do |f| %>
+  <div class='form-group'>
     <%= f.text_field :content , required: true, placeholder: 'What would you like to change?' %>
   </div>
   <div>
-    <%= f.submit 'Edit Post', class: 'btn btn-primary' %>
+    <%= f.submit 'Edit Post', class: 'btn btn-primary', data: { confirm: 'Are you sure?' } %>
   </div>
 <% end %>

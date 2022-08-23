@@ -1,13 +1,13 @@
-<div class="stories">
+<div class='stories'>
   <% @stories.each do |story| %>
   <% if story.user.accessible? || story.user.followers.pluck(:follower_id).include?(current_user.id) || current_user.id == story.user.id %>
     <section>
-      <div class="username">
+      <div class='username'>
         <%if story.image.attached?%>
           <%= image_tag story.image, class: 'story-img' %>
         <%end%>
       </div>
-      <div class="username">
+      <div class='username'>
         <%= link_to story.user.full_name, story_path(story), class: 'username' %>
       </div>
     </section>

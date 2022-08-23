@@ -10,16 +10,16 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  <% if notice%>
+    <p class='notice alert alert-success'><%= notice %></p>
+    <%elsif alert%>
+    <p class='alert alert alert-danger'><%= alert %></p>
+    <%end%>
     <% if user_signed_in? %>
       <%= render 'layouts/navbar' %>
     <% end %>
 
-    <main class="container" style="min-height: 500px;">
-    <%# <%= if flash.exists? %>
-<%# aaa %>
-    <%# <% end %>
+    <main class='container' style='min-height: 500px;'>
       <%= yield %>
     </main>
     <%= render 'layouts/footer' %>
