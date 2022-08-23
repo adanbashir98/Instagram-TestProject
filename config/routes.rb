@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   resources :home
-
   get :search, to: 'home#search', as: 'search'
-
 
   devise_scope :user do
     authenticated :user do
