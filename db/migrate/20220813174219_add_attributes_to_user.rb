@@ -2,7 +2,9 @@
 
 class AddAttributesToUser < ActiveRecord::Migration[5.2]
   def change
-    add_column :users, :full_name, :string
-    add_column :users, :bio, :text
+    change_table :users, bulk: true do |t|
+      t.add_column :users, :full_name, :string
+      t.add_column :users, :bio, :text
+    end
   end
 end
