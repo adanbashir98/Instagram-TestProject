@@ -4,7 +4,7 @@ development:
   api_secret: "EIMqlTL51wVjft4N2lWT0_B8WI0"
   secure: true
 production:
-  cloud_name: "dxmms7rbf"
-  api_key: "669217294677112"
-  api_secret: "EIMqlTL51wVjft4N2lWT0_B8WI0"
+  cloud_name: ENV['CLOUD_NAME']
+  api_key: ENV['API_KEY']
+  api_secret: ENV['API_SECRET']
   secure: true
