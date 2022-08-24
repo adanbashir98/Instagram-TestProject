@@ -28,10 +28,6 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(:email, :encrypted_password, :username, :full_name, :bio, :avatar)
-  end
-
   def user
     if User.pluck(:id).include?(params[:id].to_i)
       @user ||= User.find(params[:id])

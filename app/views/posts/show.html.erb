@@ -31,7 +31,7 @@
           <% end %>
         <% end %>
       </div>
-      <%= link_to @post.user.full_name, user_path(@post.user), class: 'username' %>
+      <%= link_to @post.user.full_name, user_path(@post.user), class: 'fullname' %>
     </div>
     <div class='description'>
       <%= @post.content %>

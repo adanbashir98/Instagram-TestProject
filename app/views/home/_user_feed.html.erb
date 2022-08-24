@@ -1,5 +1,5 @@
 <div class='posts'>
-  <% @posts.each do |post| %>
+  <% @posts.includes(:user).each do |post| %>
     <% if post.user.accessible? || post.user.followers.pluck(:follower_id).include?(current_user.id) %>
       <section class='post'>
         <div class='user'>
@@ -8,9 +8,9 @@
               <%= image_tag post.user.avatar %>
             <% end %>
           </div>
-          <%= link_to post.user.full_name, user_path(post.user), class: 'username' %>
+          <%= link_to post.user.full_name, user_path(post.user), class: 'fullname' %>
         </div>
-        <div class='username'>
+        <div class='fullname'>
           <%if post.images.attached?%>
               <div class='carousel slide' data-ride='carousel' id='carousel-post-<%= post.id %>'>
                 <div class='carousel-inner'>
@@ -52,8 +52,7 @@
     <%= button_to 'Like Post', like_post_path(post) %>
 <%end %>
   <%= post.likes.count%>
-
-        <% post.comments.each do |comment| %>
+        <% post.comments.includes(:user).each do |comment| %>
         <p><%= comment.user&.full_name %> <%= comment.comment_body %></p>
         <% if comment.persisted?%>
           <%= link_to 'Delete Comment', {controller: 'comments', action: 'destroy', id: comment.id}, method: :delete, data: { confirm: 'Are you sure?' } %>

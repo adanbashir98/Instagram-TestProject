@@ -7,7 +7,7 @@ class LikesController < ApplicationController
     @post = Post.find(params[:id])
     @like = @post.likes.create(user_id: current_user.id)
     flash[:notice] = 'Post liked!' if @like.save
-    redirect_to post_path(@post)
+    redirect_to request.referer
   end
 
   def destroy
@@ -15,7 +15,7 @@ class LikesController < ApplicationController
     @post = @like.post
     if @like.destroy
       flash[:notice] = 'Post unliked!'
-      redirect_to post_path(@post)
+      redirect_to request.referer
     else
       flash[:alert] = 'Something went wrong. Try Again!'
     end

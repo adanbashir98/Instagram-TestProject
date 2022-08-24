@@ -6,7 +6,7 @@
 </div>
 <div>
 
-  <% @post.comments.each do |comment| %>
+  <% @post.comments.includes(:user).each do |comment| %>
     <p><%= comment.user&.full_name %> <%= comment.comment_body %></p>
     <% if comment.persisted?%>
     <%= link_to 'Delete Comment', {controller: 'comments', action: 'destroy', id: comment.id}, method: :delete, data: { confirm: 'Are you sure?' } %>
