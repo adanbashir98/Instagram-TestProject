@@ -12,7 +12,7 @@ gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'letter_opener', group: :development
 gem 'ransack'
-gem 'sidekiq'
+# gem 'sidekiq'
 gem 'whenever', require: false
 gem 'will_paginate', '~>3.0'
 
