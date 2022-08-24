@@ -5,7 +5,7 @@ class LikesController < ApplicationController
 
   def create
     @post = Post.find(params[:id])
-    @like = @post.likes.create(user_id: current_user.id)
+    @like = @post.likes.create(user_id: current_user.id) if @post.present?
     flash[:notice] = 'Post liked!' if @like.save
     redirect_to request.referer
   end

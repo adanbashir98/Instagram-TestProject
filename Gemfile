@@ -9,7 +9,6 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'cloudinary'
 gem 'devise'
 gem 'font-awesome-rails'
-gem 'foreman'
 gem 'jquery-rails'
 gem 'letter_opener', group: :development
 gem 'ransack'

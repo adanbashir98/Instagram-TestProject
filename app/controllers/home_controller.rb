@@ -2,8 +2,8 @@
 
 class HomeController < ApplicationController
   def index
-    @posts = Post.all.order(created_at: :desc).includes(:likes, :comments)
-    @stories = Story.all.order(created_at: :desc)
+    @posts = Post.all.order(created_at: :desc).includes(:likes, :comments, :user)
+    @stories = Story.all.order(created_at: :desc).includes(:user)
     @suggestions = User.where.not(id: current_user.id)
     @search = User.ransack(params[:q])
     @users = if params.key?(:q)

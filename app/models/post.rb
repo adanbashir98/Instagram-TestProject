@@ -8,11 +8,7 @@ class Post < ApplicationRecord
 
   validate :image_presence
   validate :number_of_photos
-  validate :content_presence
-
-  def content_presence
-    errors.add(:content, "Can't be blank!") if content.blank?
-  end
+  validates :content, presence: true
 
   def image_presence
     errors.add(:images, "Can't be blank!") unless images.attached?

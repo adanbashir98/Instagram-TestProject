@@ -1,5 +1,5 @@
 <div class='posts'>
-  <% @posts.includes(:user).each do |post| %>
+  <% @posts.each do |post| %>
     <% if post.user.accessible? || post.user.followers.pluck(:follower_id).include?(current_user.id) %>
       <section class='post'>
         <div class='user'>
