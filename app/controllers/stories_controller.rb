@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 class StoriesController < ApplicationController
-  before_action :authenticate_user!
   before_action :story, only: %i[destroy show]
 
   def create
     story = current_user.stories.create(story_params)
-    flash[:notice] = 'Story created!' if story.save
+    if story.save
+      flash[:notice] = 'Story created!'
+    else
+      flash[:alert] = 'Something went wrong. Please try again!'
+    end
     redirect_to root_path
   end
 
@@ -25,12 +28,7 @@ class StoriesController < ApplicationController
   private
 
   def story
-    if Story.pluck(:id).include?(params[:id].to_i)
-      @story ||= Story.find(params[:id])
-    else
-      flash[:alert] = "This user's story does not exist."
-      redirect_to root_path
-    end
+    @story ||= Story.find(params[:id])
   end
 
   def story_params

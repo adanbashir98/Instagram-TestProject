@@ -3,7 +3,7 @@
     <%= f.text_field :content , required: true, placeholder: 'What would you like to say?' %>
   </div>
   <div class='form-group'>
-    <%= f.file_field :images, multiple: true, required: true%>
+    <%= f.file_field :images, multiple: true, required: true, accept:'image/*' %>
   </div>
   <div>
     <%= f.submit 'Create Post', class: 'btn btn-primary' %>

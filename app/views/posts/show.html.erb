@@ -1,27 +1,6 @@
 <div class='post-show row'>
   <div class='col-md-8'>
-    <div class='carousel slide' data-ride='carousel' id='carousel-post-<%= @post.id %>'>
-      <div class='carousel-inner'>
-        <% @post.images.each do |photo|%>
-          <% if photo == @post.images.first %>
-            <div class='carousel-item active'>
-             <%else%>
-                <div class='carousel-item'>
-              <%end%>
-              <%=image_tag photo, class: 'image' %>
-            </div>
-          <%end%>
-      </div>
-      <a class='carousel-control-prev' href='#carousel-post-<%= @post.id %>' role='button' data-slide='prev'>
-        <span class='carousel-control-prev-icon' aria-hidden='true'></span>
-        <span class='sr-only'>Previous</span>
-      </a>
-      <a class='carousel-control-next' href='#carousel-post-<%= @post.id %>' role='button' data-slide='next'>
-        <span class='carousel-control-next-icon' aria-hidden='true'></span>
-        <span class='sr-only'>Next</span>
-      </a>
-  </div>
-</div>
+    <%= render partial: 'posts/post' , locals: { post: @post } %>
   <div class='col-md-4'>
     <div class='user'>
       <div class='avatar'>
@@ -36,8 +15,7 @@
     <div class='description'>
       <%= @post.content %>
     </div>
-    <%@user=@post.user%>
-    <%= render 'posts/like_unlike' %>
+    <%= render partial: 'likes/like_unlike', locals: { post: @post } %>
     <div class='delete'>
     <% if current_user.posts.exists?(@post.id) %>
       <%= link_to 'Delete Post', post_path(@post.id), method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -45,6 +23,6 @@
     <% end %>
     </div>
     <div>
-    <%= render 'comments/create_comment'%>
+    <%= render  partial: 'comments/create_comment', locals: { post: @post }%>
 </div>
 </div>

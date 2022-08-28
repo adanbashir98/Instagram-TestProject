@@ -28,12 +28,12 @@
 
   <div class='field'>
     <%= f.label :status %><br />
-    <%= f.select :status, ['accessible', 'inaccessible'], autofocus: true, required: true%>
+    <%= f.select :status, ['Public', 'Private'], autofocus: true, required: true%>
   </div><br>
 
   <div class='field'>
     <%= f.label :avatar %><br />
-    <%= f.file_field :avatar, autofocus: true, autocomplete: 'email' %>
+    <%= f.file_field :avatar, autofocus: true, autocomplete: 'email', accept:'image/*' %>
   </div>
 
   <div class='actions'>

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :authenticate_user!
   before_action :user, only: %i[show follow unfollow]
 
   def show
@@ -18,22 +17,18 @@ class UsersController < ApplicationController
   end
 
   def unfollow
-    if current_user.followed_users.find_by(followee_id: @user.id).delete
+    if current_user.followees.find(@user.id).present?
+      current_user.followed_users.where(followee_id: @user.id).destroy_all
       flash[:notice] = 'User unfollowed!'
-      redirect_to user_path(user)
     else
       flash[:alert] = 'Something went wrong. Please try again later.'
     end
+    redirect_to user_path(user)
   end
 
   private
 
   def user
-    if User.pluck(:id).include?(params[:id].to_i)
-      @user ||= User.find(params[:id])
-    else
-      flash[:alert] = 'This user does not exist.'
-      redirect_to root_path
-    end
+    @user ||= User.find(params[:id])
   end
 end

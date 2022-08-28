@@ -1,29 +1,36 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :authenticate_user!
   before_action :post, only: %i[show destroy edit update]
 
   def create
     post = current_user.posts.create(post_params)
-    flash[:alert] = 'Maximum images can only be 10. Try Again!' if post.invalid?
+    if post.invalid?
+      flash[:alert] = post.errors.full_messages.to_sentence
+    else
+      flash[:notice] = 'Post was successfully created.'
+    end
     redirect_to root_path
   end
 
   def show; end
 
-  def edit; end
+  def edit
+    authorize post
+  end
 
   def update
+    authorize post
     if post.update(post_params)
       flash[:notice] = 'Post edited!'
-      redirect_to post_path(post)
     else
       flash[:alert] = 'Something went wrong. Try Again!'
     end
+    redirect_to post_path(post)
   end
 
   def destroy
+    authorize post
     post = current_user.posts.find(params[:id])
     if post.destroy
       flash[:notice] = 'Post is deleted!'
@@ -36,12 +43,7 @@ class PostsController < ApplicationController
   private
 
   def post
-    if Post.pluck(:id).include?(params[:id].to_i)
-      @post ||= Post.find(params[:id])
-    else
-      flash[:alert] = 'This post does not exist.'
-      redirect_to root_path
-    end
+    @post ||= Post.find(params[:id])
   end
 
   def post_params

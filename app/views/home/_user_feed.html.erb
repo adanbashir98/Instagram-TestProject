@@ -1,6 +1,5 @@
 <div class='posts'>
   <% @posts.each do |post| %>
-    <% if post.user.accessible? || post.user.followers.pluck(:follower_id).include?(current_user.id) %>
       <section class='post'>
         <div class='user'>
           <div class='avatar'>
@@ -12,54 +11,17 @@
         </div>
         <div class='fullname'>
           <%if post.images.attached?%>
-              <div class='carousel slide' data-ride='carousel' id='carousel-post-<%= post.id %>'>
-                <div class='carousel-inner'>
-                <% post.images.each do |photo| %>
-                  <% if photo == post.images.first %>
-                    <div class='carousel-item active'>
-                  <%else%>
-                    <div class='carousel-item'>
-                  <%end%>
-                  <%=image_tag photo, class: 'image myimg' %>
-                </div>
-            <%end%>
-            </div>
-            <a class='carousel-control-prev' href='#carousel-post-<%= post.id %>' role='button' data-slide='prev'>
-              <span class='carousel-control-prev-icon' aria-hidden='true'></span>
-              <span class='sr-only'>Previous</span>
-            </a>
-            <a class='carousel-control-next' href='#carousel-post-<%= post.id %>' role='button' data-slide='next'>
-              <span class='carousel-control-next-icon' aria-hidden='true'></span>
-              <span class='sr-only'>Next</span>
-            </a>
-        </div>
-      </div>
-        <%end%>
-        <div class='description'>
-          <%= post.content %>
-        </div>
-     <div>
-      <%= form_for [post, post.comments.new] do |f| %>
-      <%= f.text_field :comment_body, placeholder: 'Add a comment ...', autocomplete: :off, required: true %>
-      <%= f.submit %>
-      <% end %>
-      </div>
-    <br>
-        <div>
-<% if post.likes.pluck(:user_id).include?(current_user.id) %>
-    <%= button_to 'Unlike Post', {controller: 'likes', action: 'destroy', id: post.likes.ids.first.to_i}, method: :delete %>
-<% else %>
-    <%= button_to 'Like Post', like_post_path(post) %>
-<%end %>
-  <%= post.likes.count%>
-        <% post.comments.includes(:user).each do |comment| %>
-        <p><%= comment.user&.full_name %> <%= comment.comment_body %></p>
-        <% if comment.persisted?%>
-          <%= link_to 'Delete Comment', {controller: 'comments', action: 'destroy', id: comment.id}, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= render partial: 'posts/post', locals: {post: post}%>
           <%end%>
-          <%end%>
-        </div>
-    </section>
-  <% end %>
+          <div class='description'>
+            <%= post.content %>
+          </div>
+          <div>
+            <%= render partial: 'likes/like_unlike', locals: {post: post} %>
+          </div>
+          <div>
+            <%= render partial: 'comments/create_comment', locals: {post: post} %>
+          </div>
+      </section>
   <% end %>
 </div>

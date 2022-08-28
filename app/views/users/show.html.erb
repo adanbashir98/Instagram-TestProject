@@ -31,10 +31,10 @@
     </div>
   </div>
 </div>
-<% if @user.accessible? || @user.followers.pluck(:follower_id).include?(current_user.id) %>
+<% if @user.Public? || @user.followers.pluck(:follower_id).include?(current_user.id) %>
 <%= render 'user_posts' %>
 <% elsif current_user.id == @user.id %>
 <%= render 'user_posts' %>
 <%else%>
 <p>This user is private. Follow to see their posts and more!</p>
-<%end%>
+<%end %>

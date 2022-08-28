@@ -1,23 +1,21 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :find_comment, only: %i[show destroy]
+  before_action :find_comment, only: %i[destroy]
 
   def create
-    @comment = current_user.comments.new(post_id: params[:post_id], comment_body: comment_params[:comment_body])
+    @comment = current_user.comments.new(comment_params.merge(post_id: params[:post_id]))
     if @comment.save
       flash[:notice] = 'Comment created!'
-      @post = @comment.post
     else
       flash[:alert] = 'Something went wrong. Try Again!'
     end
+
     redirect_to request.referer
   end
 
-  def show; end
-
   def destroy
+    authorize @comment
     @post = @comment.post
     if @comment.destroy
       flash[:notice] = 'Comment is deleted!'
@@ -34,6 +32,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:comment_body, :id)
+    params.require(:comment).permit(:comment_body)
   end
 end

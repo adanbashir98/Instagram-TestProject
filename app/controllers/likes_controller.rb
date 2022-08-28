@@ -1,18 +1,23 @@
 # frozen_string_literal: true
 
 class LikesController < ApplicationController
-  before_action :authenticate_user!
-
   def create
     @post = Post.find(params[:id])
-    @like = @post.likes.create(user_id: current_user.id) if @post.present?
-    flash[:notice] = 'Post liked!' if @like.save
-    redirect_to request.referer
+    if @post.present?
+      @like = @post.likes.create(user_id: current_user.id)
+      if @like.save
+        flash[:notice] = 'Post liked!'
+        redirect_to request.referer
+      else
+        flash[:alert] = 'Something went wrong. Try Again!'
+      end
+    else
+      flash[:alert] = 'Post was not found.'
+    end
   end
 
   def destroy
-    @like = Like.find_by(id: params[:id])
-    @post = @like.post
+    @like = Like.find(params[:id])
     if @like.destroy
       flash[:notice] = 'Post unliked!'
       redirect_to request.referer

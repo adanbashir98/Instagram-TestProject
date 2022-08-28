@@ -1,0 +1,7 @@
+<strong>Liked by <%= post.likes.count%></strong>
+<% if post.likes.pluck(:user_id).include?(current_user.id) %>
+    <%= button_to 'Unlike Post', {controller: 'likes', action: 'destroy', id: post.likes.ids.first.to_i}, method: :delete %>
+<% else %>
+    <%= button_to 'Like Post', like_post_path(post) %>
+<%end %>
+

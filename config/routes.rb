@@ -24,6 +24,6 @@ Rails.application.routes.draw do
   resources :posts, only: [:new, :create, :show, :destroy, :edit, :update] do
     post :like, on: :member, to: 'likes#create', as: 'like'
     delete :unlike, on: :member, to: 'likes#destroy', as: 'unlike'
-    resources :comments, only: [:new, :create, :show, :destroy], shallow: true
+    resources :comments, only: [:new, :create, :destroy], shallow: true
   end
 end

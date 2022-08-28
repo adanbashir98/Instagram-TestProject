@@ -3,16 +3,20 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+gem 'dotenv-rails', groups: %i[development test]
+
 ruby '2.7.2'
 
+gem 'activestorage-validator'
 gem 'bootstrap', '~> 4.0.0'
 gem 'cloudinary'
 gem 'devise'
+gem 'faker'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'letter_opener', group: :development
 gem 'ransack'
-# gem 'sidekiq'
+gem 'sidekiq'
 gem 'whenever', require: false
 gem 'will_paginate', '~>3.0'
 
@@ -81,3 +85,5 @@ group :development, :test do
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
 end
+
+gem 'pundit', '~> 2.2'

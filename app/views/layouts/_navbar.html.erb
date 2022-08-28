@@ -6,7 +6,7 @@
     <div class='container'>
       <div class='logo'>
         <a class='navbar-brand' href='#'>
-            <%= image_tag 'Instagram.png' , class: 'logo-mini'%>
+          <a href= '<%= root_path(current_user)%>'><%= image_tag 'Instagram.png' , class: 'logo-mini'%></a>
         </a>
       </div>
       <div class='m-auto'>
@@ -14,7 +14,6 @@
       </div>
       <div class='user-section'>
         <a href= '<%= root_path(current_user)%>'><i class='fa fa-home'></i></a>
-        <a><i class='fa fa-compass'></i></a>
         <a><i class='fa fa-heart'></i></a>
           <a href= '<%= user_path(current_user)%>' >
             <i class= 'fa fa-user'></i>
