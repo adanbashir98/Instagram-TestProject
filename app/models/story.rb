@@ -10,10 +10,9 @@ class Story < ApplicationRecord
 
   scope :story_display, ->(c_user) { Story.joins(:user).where('users.status =? OR users.id =?', 0, c_user.id) }
 
-  # after_create :story_deletion_job
+  after_create :story_deletion_job
 
-  # def story_deletion_job
-  #   # StoryDeletionJob.perform_later(id)
-  #   StoryDeletionJob.set(wait: 2.minutes.from_now).perform_later(id)
-  # end
+  def story_deletion_job
+    StoryDeletionJob.set(wait: 24.hours).perform_later(id)
+  end
 end
