@@ -1,0 +1,28 @@
+<div class='post-show row'>
+  <div class='col-md-8'>
+    <%= render partial: 'posts/post' , locals: { post: @post } %>
+  <div class='col-md-4'>
+    <div class='user'>
+      <div class='avatar'>
+        <% if @post.user.avatar.attached? %>
+          <%= link_to user_path(@post.user) do %>
+            <%= image_tag @post.user.avatar %>
+          <% end %>
+        <% end %>
+      </div>
+      <%= link_to @post.user.full_name, user_path(@post.user), class: 'fullname' %>
+    </div>
+    <div class='description'>
+      <%= @post.content %>
+    </div>
+    <%= render partial: 'likes/like_unlike', locals: { post: @post } %>
+    <div class='delete'>
+    <% if current_user.posts.exists?(@post.id) %>
+      <%= link_to 'Delete Post', post_path(@post.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Edit Post', edit_post_path(@post.id), data: { confirm: 'Are you sure?' } %>
+    <% end %>
+    </div>
+    <div>
+    <%= render  partial: 'comments/create_comment', locals: { post: @post }%>
+</div>
+</div>

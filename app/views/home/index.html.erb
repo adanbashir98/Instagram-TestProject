@@ -1,0 +1,10 @@
+<div id='search-results'></div>
+<%= render 'posts/create_post' %>
+<%= render 'stories/create_story'%>
+<% if @stories.present? %>
+  <%= render 'stories/display_stories' %>
+<% end %>
+<%= render 'suggestions' %>
+<% if @posts.present? %>
+  <%= render 'user_feed'%>
+<%end %>

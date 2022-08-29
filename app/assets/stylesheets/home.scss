@@ -1,0 +1,39 @@
+.form-upload{
+  border: 1px solid #dbdbdb;
+  height: auto;
+  margin: auto 160px;
+  padding: 30px;
+  border-radius: 3px;
+  input[type='text']{
+    width: 100%;
+  }
+}
+
+.myimg{
+  height: 500px;
+  width: 500px;
+}
+
+.logo-mini{
+  height: 40px;
+  width: 100px;
+}
+
+.table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.suggestions-img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+}
+
+.suggestions {
+  display: flex;
+}
+
+.list-inline {
+  display: inline;
+}

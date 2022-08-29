@@ -1,0 +1,12 @@
+<br>
+<h4>People you can follow: </h4>
+<div class="suggestions">
+<section>
+<% @suggestions.each do |user| %>
+  <li class="list-inline"><% if user.avatar.attached? %>
+  <%= image_tag user.avatar, class: 'suggestions-img' %>
+  <%= link_to user.full_name, user_path(user) %>
+  <% end %></li>
+<%end%>
+</section>
+</div>

@@ -1,7 +1,41 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# frozen_string_literal: true
+
+require 'faker'
+require 'open-uri'
+
+User.destroy_all
+
+def image_fetcher
+  URI.parse(Faker::Avatar.image).open
+end
+
+arr = %w[Public Private]
+
+full_name = 'Admin'
+email = 'admin@instagram.com'
+password = 'admins'
+status = arr[rand(0..1)]
+u = User.new(full_name: full_name, email: email, password: password, status: status)
+u.avatar.attach(io: image_fetcher, filename: 'test.png', content_type: 'image/*')
+u.save!
+
+3.times do
+  full_name = Faker::Name.name
+  email = Faker::Internet.unique.safe_email
+  password = Faker::Internet.password
+  status = arr[rand(0..1)]
+  u = User.new(full_name: full_name, email: email, password: password, status: status)
+  u.avatar.attach(io: image_fetcher, filename: 'test.png', content_type: 'image/*')
+  u.save!
+end
+
+content = Faker::Lorem.paragraph_by_chars(number: 20)
+users_all = User.all
+users_all.each do |user|
+  p = user.posts.new(content: content)
+  p.images.attach(io: image_fetcher, filename: 'test.png', content_type: 'image/*')
+  p.save!
+  s = user.stories.new
+  s.image.attach(io: image_fetcher, filename: 'test.png', content_type: 'image/*')
+  s.save!
+end

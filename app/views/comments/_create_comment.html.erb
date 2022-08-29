@@ -1,0 +1,15 @@
+<div>
+  <% post.comments.each do |comment| %>
+    <p><strong><%= comment.user.full_name %>: </strong><%= comment.comment_body %>
+    <% if comment.user.id == current_user.id %>
+      <%= link_to 'Delete Comment', {controller: 'comments', action: 'destroy', id: comment.id}, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %></p>
+  <% end %>
+</div>
+<div>
+  <%= form_for [post, post.comments.new] do |f| %>
+  <%= f.text_field :comment_body, placeholder: 'Add a comment..', autocomplete: :off, required: true %>
+  <%= f.submit %>
+  <% end %>
+</div>
+

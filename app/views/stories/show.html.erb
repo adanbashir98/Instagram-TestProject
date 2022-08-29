@@ -1,0 +1,12 @@
+<h3 class='text-center'>
+  <%= "#{@story.user.full_name}'s Story" %>
+</h3>
+<div>
+  <%=image_tag @story.image, class: 'mystory-img' %>
+</div>
+<div class='delete text-center'>
+    <% if current_user.stories.exists?(@story.id) %>
+      <%= link_to 'Delete Story', story_path(@story), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+</div>
+

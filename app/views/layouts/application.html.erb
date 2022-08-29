@@ -10,6 +10,18 @@
   </head>
 
   <body>
-    <%= yield %>
+    <% if notice%>
+      <p class='notice alert alert-success'><%= notice %></p>
+    <%elsif alert%>
+      <p class='alert alert alert-danger'><%= alert %></p>
+    <%end%>
+    <% if user_signed_in? %>
+      <%= render 'layouts/navbar' %>
+    <% end %>
+
+    <main class='container main'>
+      <%= yield %>
+    </main>
+    <%= render 'layouts/footer' %>
   </body>
 </html>
