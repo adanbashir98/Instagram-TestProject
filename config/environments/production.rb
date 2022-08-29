@@ -93,7 +93,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.raise_delivery_errors = true
-   config.action_mailer.default_url_options = { 'https://instagram-testproject.herokuapp.com' }
+   config.action_mailer.default_url_options = { host: 'https://instagram-testproject.herokuapp.com' }
    config.action_mailer.default_options = {
      from: 'adan.bashir@devsinc.com'
    }
