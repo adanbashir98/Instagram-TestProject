@@ -8,4 +8,3 @@ class StoryDeletionJob
     Story.find(story_id).destroy
   end
 end
-
