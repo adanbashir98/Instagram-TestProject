@@ -2,6 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :post, only: %i[show destroy edit update]
+  before_action :authorize_post, only: %i[edit update destroy]
 
   def create
     post = current_user.posts.create(post_params)
@@ -15,12 +16,9 @@ class PostsController < ApplicationController
 
   def show; end
 
-  def edit
-    authorize post
-  end
+  def edit; end
 
   def update
-    authorize post
     if post.update(post_params)
       flash[:notice] = 'Post edited!'
     else
@@ -30,7 +28,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    authorize post
     post = current_user.posts.find(params[:id])
     if post.destroy
       flash[:notice] = 'Post is deleted!'
@@ -48,5 +45,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:content, images: [])
+  end
+
+  def authorize_post
+    authorize post
   end
 end

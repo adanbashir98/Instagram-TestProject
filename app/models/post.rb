@@ -19,4 +19,6 @@ class Post < ApplicationRecord
   def number_of_photos
     errors.add(:images, 'are more than 10. Maximum number of images can be 10!') if images.size > 10
   end
+
+  scope :public_posts, ->(c_user) { Post.joins(:user).where('users.status =? AND users.id !=?', 0, c_user.id) }
 end

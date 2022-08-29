@@ -5,15 +5,15 @@ class Story < ApplicationRecord
 
   has_one_attached :image
 
-  after_create :story_deletion_job
+  validates :image, presence: true,
+                    blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..10.megabytes }
 
-  def story_deletion_job
-    StoryDeletionJob.perform_at(1.minute.from_now)
-  end
+  scope :story_display, ->(c_user) { Story.joins(:user).where('users.status =? OR users.id =?', 0, c_user.id) }
 
-  # def delete_story
-  #   Story.where(['created_at <= ?', 1.minute.ago]).find_each(&:destroy)
-  # after_create :Story_Deletion_Job
-  # , content_type: 'image/jpeg'
+  # after_create :story_deletion_job
+
+  # def story_deletion_job
+  #   # StoryDeletionJob.perform_later(id)
+  #   StoryDeletionJob.set(wait: 2.minutes.from_now).perform_later(id)
   # end
 end

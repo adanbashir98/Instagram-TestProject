@@ -3,12 +3,9 @@
 class HomeController < ApplicationController
   before_action :authenticate_user!
   def index
-    @posts = Post.joins(:user).where('users.status =? AND users.id !=?', 0, current_user.id)
-    @stories = Story.joins(:user).where('users.status =? OR users.id =?', 0, current_user.id)
-    @all_users = User.all
-    @all_users.each do |user|
-      next unless user.followers.pluck(:follower_id).include?(current_user.id)
-
+    @posts = Post.public_posts(current_user).includes(:user, :likes, :comments)
+    @stories = Story.story_display(current_user).includes(:user)
+    current_user.followees.find_each do |user|
       @private_posts = Post.where(user_id: user.id)
       @posts += @private_posts
       @private_stories = Story.where(user_id: user.id)

@@ -5,10 +5,10 @@ class StoriesController < ApplicationController
 
   def create
     story = current_user.stories.create(story_params)
-    if story.save
-      flash[:notice] = 'Story created!'
+    if story.invalid?
+      flash[:alert] = story.errors.full_messages.to_sentence
     else
-      flash[:alert] = 'Something went wrong. Please try again!'
+      flash[:notice] = 'Story was successfully created.'
     end
     redirect_to root_path
   end
@@ -16,6 +16,7 @@ class StoriesController < ApplicationController
   def show; end
 
   def destroy
+    authorize story
     story = current_user.stories.find(params[:id])
     if story.destroy
       flash[:notice] = 'Story is deleted!'
