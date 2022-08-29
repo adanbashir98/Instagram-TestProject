@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
-class StoryDeletionJob < ApplicationJob
+class StoryDeletionJob
+  include Sidekiq::Worker
   queue_as :default
 
-  def perform_later(story_id)
+  def perform(story_id)
     Story.find(story_id).destroy
   end
 end
+

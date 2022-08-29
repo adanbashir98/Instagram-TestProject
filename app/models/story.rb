@@ -13,6 +13,6 @@ class Story < ApplicationRecord
   after_create :story_deletion_job
 
   def story_deletion_job
-    StoryDeletionJob.set(wait: 24.hours).perform_later(id)
+    StoryDeletionJob.perform_at(1.minute, id)
   end
 end
