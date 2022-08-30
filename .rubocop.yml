@@ -28,3 +28,6 @@ Style/Documentation:
   Enabled: false
 Metrics/AbcSize:
   Max: 78
+RSpec/EmptyExampleGroup:
+  CustomIncludeMethods:
+  - include_tests
