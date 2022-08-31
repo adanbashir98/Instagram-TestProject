@@ -19,7 +19,7 @@ class User < ApplicationRecord
   has_many :following_users, foreign_key: :followee_id, class_name: 'Follow', inverse_of: :followee, dependent: :destroy
   has_many :followers, through: :following_users
 
-  validates :email, uniqueness: true
+  validates :email, uniqueness: true, presence: true
   validates :full_name, presence: true, length: { maximum: 30 }
   validates :avatar, presence: true,
                      blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..10.megabytes }

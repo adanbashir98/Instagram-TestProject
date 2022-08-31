@@ -49,6 +49,93 @@
           null
         ]
       },
+      "/home/dev/Documents/Instagram-TestProject/instagram-clone/app/models/comment.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null
+        ]
+      },
+      "/home/dev/Documents/Instagram-TestProject/instagram-clone/app/models/follow.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null
+        ]
+      },
+      "/home/dev/Documents/Instagram-TestProject/instagram-clone/app/models/like.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null
+        ]
+      },
+      "/home/dev/Documents/Instagram-TestProject/instagram-clone/app/models/post.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          2,
+          null
+        ]
+      },
+      "/home/dev/Documents/Instagram-TestProject/instagram-clone/app/models/story.rb": {
+        "lines": [
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          2,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
       "/home/dev/Documents/Instagram-TestProject/instagram-clone/app/policies/comment_policy.rb": {
         "lines": [
           null,
@@ -218,7 +305,7 @@
           0,
           0,
           0,
-          0,
+          null,
           0,
           0,
           null,
@@ -515,103 +602,6 @@
         "branches": {
         }
       },
-      "/home/dev/Documents/Instagram-TestProject/instagram-clone/app/models/comment.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/dev/Documents/Instagram-TestProject/instagram-clone/app/models/story.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/dev/Documents/Instagram-TestProject/instagram-clone/app/models/post.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/dev/Documents/Instagram-TestProject/instagram-clone/app/models/like.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/home/dev/Documents/Instagram-TestProject/instagram-clone/app/models/follow.rb": {
-        "lines": [
-          null,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
       "/home/dev/Documents/Instagram-TestProject/instagram-clone/app/jobs/story_deletion_job.rb": {
         "lines": [
           null,
@@ -639,6 +629,6 @@
         }
       }
     },
-    "timestamp": 1661874151
+    "timestamp": 1661954909
   }
 }

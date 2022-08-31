@@ -3,14 +3,35 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it 'validates presence' do
-    user = described_class.new
-    user.email = ''
-    user.validate
-    expect(user.errors[:email]).to include("can't be blank")
+  let(:u) { FactoryBot.create(:user) }
 
-    # user.email = 'foo@bar.com'
-    # user.validate
-    # expect(user.errors[:email]).not_to include("can't be blank")
+  context 'when valid factory' do
+    it 'has a valid factory' do
+      expect(u).to be_valid
+    end
+  end
+
+  context 'when associations' do
+    it { is_expected.to have_many(:posts).dependent(:destroy) }
+    it { is_expected.to have_many(:comments).dependent(:destroy) }
+    it { is_expected.to have_many(:stories).dependent(:destroy) }
+    it { is_expected.to have_many(:likes).dependent(:destroy) }
+
+    it {
+      expect(u).to have_many(:followed_users).class_name('Follow').with_foreign_key(:follower_id).dependent(:destroy)
+    }
+
+    it {
+      expect(u).to have_many(:following_users).class_name('Follow').with_foreign_key(:followee_id).dependent(:destroy)
+    }
+  end
+
+  context 'when validations' do
+    it { is_expected.to validate_presence_of(:full_name) }
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_presence_of(:avatar) }
+    it { is_expected.to validate_uniqueness_of(:email).ignoring_case_sensitivity }
+    it { is_expected.to validate_length_of(:full_name) }
+    # it { is_expected.to have_content_type(:json) }
   end
 end
