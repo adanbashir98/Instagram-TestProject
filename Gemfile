@@ -16,7 +16,9 @@ gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'letter_opener', group: :development
 gem 'ransack'
+gem 'rexml'
 gem 'sidekiq'
+gem 'simplecov', require: false, group: :test
 gem 'whenever', require: false
 gem 'will_paginate', '~>3.0'
 
@@ -56,6 +58,11 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'rails-controller-testing'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 3.5'
 end
 
 group :development do
@@ -68,11 +75,12 @@ group :development do
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
-  # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'shoulda-matchers', '~> 5.0'
+  #   # Adds support for Capybara system testing and selenium driver
+  #   # gem 'capybara', '>= 2.15'
+  #   gem 'selenium-webdriver'
+  #   # Easy installation and use of chromedriver to run system tests with Chrome
+  #   gem 'chromedriver-helper'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
