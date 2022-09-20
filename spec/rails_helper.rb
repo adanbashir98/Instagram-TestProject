@@ -6,8 +6,8 @@ SimpleCov.start
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 
-require File.expand_path('../config/environment', __dir__)
-# require_relative '../config/environment'
+# require File.expand_path('../config/environment', __dir__)
+require_relative '../config/environment'
 
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
@@ -15,6 +15,8 @@ require 'rspec/rails'
 require 'database_cleaner'
 require 'capybara/rspec'
 require 'support/factory_bot'
+require 'support/devise'
+require 'sidekiq/testing'
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -53,7 +55,8 @@ RSpec.configure do |config|
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.include FactoryBot::Syntax::Methods
+  # config.include FactoryBot::Syntax::Methods
+  config.include(Shoulda::Callback::Matchers::ActiveModel)
 
   config.include Devise::Test::ControllerHelpers, type: :controller
 
