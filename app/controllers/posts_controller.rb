@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   def create
     post = current_user.posts.create(post_params)
     if post.invalid?
-      flash[:alert] = post.errors.full_messages.to_sentence
+      flash[:alert] = 'Something went wrong. Try Again!'
     else
       flash[:notice] = 'Post was successfully created.'
     end
