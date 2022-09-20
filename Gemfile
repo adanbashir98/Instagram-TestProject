@@ -13,8 +13,14 @@ gem 'cloudinary'
 gem 'devise'
 gem 'faker'
 gem 'font-awesome-rails'
+# gem 'grape'
+# gem 'grape-active_model_serializers'
+# gem 'active_model_serializers'
+gem 'active_model_serializers', '~> 0.10.2'
 gem 'jquery-rails'
 gem 'letter_opener', group: :development
+# gem 'rack-cors'
+gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 gem 'ransack'
 gem 'rexml'
 gem 'sidekiq'
@@ -60,8 +66,8 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'rails-controller-testing'
   gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.5'
 end
 
@@ -75,6 +81,8 @@ group :development do
 end
 
 group :test do
+  gem 'pundit-matchers', '~> 1.7.0'
+  gem 'shoulda-callback-matchers', '~> 1.1.1'
   gem 'shoulda-matchers', '~> 5.0'
   #   # Adds support for Capybara system testing and selenium driver
   #   # gem 'capybara', '>= 2.15'

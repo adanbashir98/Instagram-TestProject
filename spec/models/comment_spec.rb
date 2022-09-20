@@ -13,6 +13,13 @@ RSpec.describe Comment, type: :model do
     end
   end
 
+  context 'when invalid factory' do
+    it 'has an invalid factory' do
+      invalid_comment = FactoryBot.build(:comment, user_id: nil, post_id: nil)
+      expect(invalid_comment).to be_invalid
+    end
+  end
+
   context 'when associations' do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:post) }

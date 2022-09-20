@@ -19,10 +19,11 @@ class CommentsController < ApplicationController
     @post = @comment.post
     if @comment.destroy
       flash[:notice] = 'Comment is deleted!'
-      redirect_to request.referer
     else
       flash[:alert] = 'Something went wrong. Try Again!'
     end
+
+    redirect_to request.referer
   end
 
   private

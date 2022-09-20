@@ -21,6 +21,5 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: true, presence: true
   validates :full_name, presence: true, length: { maximum: 30 }
-  validates :avatar, presence: true,
-                     blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..10.megabytes }
+  validates :avatar, presence: true
 end
