@@ -14,12 +14,22 @@ RSpec.describe PostsController, type: :controller do
   describe 'when post#create' do
     context 'when cases' do
       let!(:post_params) do
-        { content: 'Heyy.', images: Rack::Test::UploadedFile.new(Rails.root.join('spec/images/test.png'), 'image/png') }
+        { content: 'Heyy.',
+          images: [Rack::Test::UploadedFile.new(Rails.root.join('spec/images/test.png'), 'image/png')] }
+      end
+
+      let!(:invalid_post_params) do
+        { content: nil, images: nil }
       end
 
       it 'creates post' do
         post :create, params: { post: post_params }
         expect(flash[:notice]).to match('Post was successfully created.')
+      end
+
+      it 'does not create post' do
+        post :create, params: { post: invalid_post_params }
+        expect(flash[:alert]).to match('Something went wrong. Try again!')
       end
     end
   end
@@ -28,6 +38,7 @@ RSpec.describe PostsController, type: :controller do
     let!(:invalid_post_params) do
       { content: nil }
     end
+
     let!(:valid_post_params) do
       { content: 'Whatt?' }
     end

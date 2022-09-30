@@ -5,7 +5,7 @@ class Story < ApplicationRecord
 
   has_one_attached :image
 
-  validates :image, presence: true
+  validates :image, presence: true, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..10.megabytes }
 
   scope :story_display, ->(c_user) { Story.joins(:user).where('users.status =? OR users.id =?', 0, c_user.id) }
 

@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
       flash[:alert] = 'Something went wrong. Try Again!'
     end
 
-    redirect_to request.referer
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
       flash[:alert] = 'Something went wrong. Try Again!'
     end
 
-    redirect_to request.referer
+    redirect_back(fallback_location: root_path)
   end
 
   private
