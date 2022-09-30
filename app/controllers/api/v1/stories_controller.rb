@@ -16,8 +16,6 @@ module Api
 
       def show
         @story = Story.find_by(id: params[:id])
-        # .includes(:user)
-        # @full_name = @story.user.full_name
         if @story.present?
           render json: {
             data: ActiveModelSerializers::SerializableResource.new(@story,

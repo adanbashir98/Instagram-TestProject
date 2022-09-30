@@ -7,7 +7,7 @@ class LikesController < ApplicationController
       @like = @post.likes.create(user_id: current_user.id)
       if @like.save
         flash[:notice] = 'Post liked!'
-        redirect_to request.referer
+        redirect_back(fallback_location: root_path)
       else
         flash[:alert] = 'Something went wrong. Try Again!'
       end
@@ -20,7 +20,7 @@ class LikesController < ApplicationController
     @like = Like.find(params[:id])
     if @like.destroy
       flash[:notice] = 'Post unliked!'
-      redirect_to request.referer
+      redirect_back(fallback_location: root_path)
     else
       flash[:alert] = 'Something went wrong. Try Again!'
     end
